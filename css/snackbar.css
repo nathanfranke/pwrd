@@ -1,0 +1,29 @@
+.snackbar {
+	position: fixed;
+	
+	left: 50%;
+	transform: translateX(-50%);
+	
+	padding: 16px;
+	
+	border-radius: 4px;
+	
+	color: white;
+	
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	
+	bottom: 32px;
+	opacity: 0.0;
+	
+	pointer-events: none;
+	
+	transition: bottom 0.25s ease-out, opacity 0.25s;
+}
+
+.snackbar[show="true"] {
+	bottom: 64px;
+	opacity: 1.0;
+	
+	pointer-events: initial;
+}

@@ -1,0 +1,35 @@
+.modal {
+	display: flex;
+	position: fixed;
+	
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	justify-content: center;
+	align-items: center;
+	
+	background-color: rgba(0, 0, 0, 0.75);
+	
+	opacity: 0.0;
+	pointer-events: none;
+	
+	transition: opacity 0.25s;
+}
+
+.modal[show=true] {
+	opacity: 1.0;
+	pointer-events: initial;
+}
+
+.modal-content {
+	padding: 16px;
+	
+	overflow: auto;
+	
+	background-color: #101010;
+	
+	color: white;
+}
+

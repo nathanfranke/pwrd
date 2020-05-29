@@ -1,0 +1,103 @@
+.generator-modal-content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-begin;
+}
+
+.input-generator-length {
+	padding: 4px 16px;
+	
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 18px;
+}
+
+.input-generator-length .generator-length-slider {
+	margin: 0px 16px;
+}
+
+.input-generator-length .generator-length-value {
+	width: 96px;
+	
+	text-align: center;
+}
+
+.generator-features {
+	margin: 8px 16px;
+}
+
+.input-generator-feature {
+	padding: 0 16px;
+	margin: 0 32px;
+}
+
+.input-generator-feature-separate {
+	padding: 8px;
+	
+	margin-top: 8px;
+	margin-bottom: 8px;
+	
+	border: 1px dashed black;
+}
+
+.input-generator-feature-item {
+	display: flex;
+	
+	margin: 0 16px;
+}
+
+.input-generator-feature .input-generator-feature-text {
+	display: flex;
+	
+	align-items: center;
+	
+	flex: auto 1 1;
+	
+	margin-left: 8px;
+	
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+
+.input-generator-feature .input-generator-feature-text .characters {
+	margin-left: 8px;
+	
+	font-size: 8px;
+	
+	color: #808080;
+}
+
+.generator-exclude {
+	display: flex;
+	
+	justify-content: center;
+}
+
+.input-generator-exclude {
+	flex: 120px 0 1;
+	
+	text-align: center;
+}
+
+.generator-result {
+	display: flex;
+	
+	margin-top: 16px;
+}
+
+.generator-result input {
+	flex: auto;
+	
+	font-family: monospace;
+}
+
+.generator-done {
+	display: flex;
+	
+	justify-content: center;
+}
+
+.generator-done .generator-done-button {
+	flex: 200px 0 1;
+	
+	margin-top: 32px;
+}

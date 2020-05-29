@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Pwrd</title>
+		
+		<link rel="stylesheet" href="/css/pwrd.css"/>
+		<link rel="stylesheet" href="/css/generator.css"/>
+		<link rel="stylesheet" href="/css/auth.css"/>
+		<!--<link rel="stylesheet" href="/css/save.css"/>
+		<link rel="stylesheet" href="/css/load.css"/>-->
+		
+		<link rel="stylesheet" href="/css/modal.css"/>
+		<link rel="stylesheet" href="/css/snackbar.css"/>
+		
+		<link rel="stylesheet" href="/css/index.css"/>
+		
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" integrity="sha256-8Ww0c1qKDMdHT2+3s3369kzSXcgIrvqzSwzjdZ5qHDs=" crossorigin="anonymous"></script>
+		<script src="/lib/aes.js"></script>
+		<script src="https://unpkg.com/blockstack@21.0.0/dist/blockstack.js" integrity="sha384-zbpmDp1R7a7Eyh11zgCQlx8vx50WvRyGsZ1+ke6SEogm2ahOAIrnURy+cLjYE3jq" crossorigin="anonymous"></script>
+		
+		<script src="/js/blockstack.js"></script>
+		
+		<script src="/js/snackbar.js"></script>
+		
+		<script src="/js/pwrd.js"></script>
+		<script src="/js/words.js"></script>
+		<script src="/js/generator.js"></script>
+		<script src="/js/auth.js"></script>
+		<!--<script src="/js/save.js"></script>
+		<script src="/js/load.js"></script>-->
+		
+		<script src="/js/index.js"></script>
+		
+		<meta property="og:title" content="PWRD.xyz - Simple and Secure Password Manager" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://pwrd.xyz/icon.png" />
+		<meta property="og:url" content="https://pwrd.xyz/" />
+		<meta property="og:description" content="Encrypt and store your passwords using Blockchain technology" />
+	</head>
+	<body>
+		<div class="page">
+			<div class="logo-container">
+				<div class="logo">
+					<div class="logo-large text">
+						PWRD
+					</div>
+					<div class="logo-small text">
+						.xyz
+					</div>
+				</div>
+			</div>
+			<div class="buttons-container">
+				<input type="button" class="signin-button" value="Sign in" onclick="signIn()">
+				<input type="button" class="signout-button" value="Sign out" onclick="signOut()">
+				<input type="button" class="backup-button" value="Backup" onclick="backup()">
+				<input type="button" class="auth-button" value="Change Authentication">
+				<input type="button" class="generator-button" value="Password Generator">
+			</div>
+			<div id="blockstack-intro" class="text">
+				PWRD uses Blockchain technology to securely encrypt and store your passwords
+			</div>
+			<div id="auth-loading">
+				<img src="/res/loading.png">
+			</div>
+			<div id="database">
+				<div class="search-container">
+					<div class="search">
+						<img src="/res/search.png">
+						<input type="text" placeholder="Search">
+					</div>
+				</div>
+				<div class="entries-container">
+					<div class="entries sortable">
+					</div>
+					<div class="no-entries text">Add passwords here</div>
+				</div>
+				<div class="buttons-container">
+					<input type="button" class="add-button add-item-button" value="&#65291;">
+					<input type="button" class="add-button add-separator-button" value="&#x1F5CF;">
+				</div>
+			</div>
+			<div class="page-space"></div>
+			<div class="footer-container">
+				<div class="footer text">
+					Copyright &copy; 2019-2020 Nathan Franke. <a target="_blank" style="color: inherit;" href="https://runkod.com/">Hosted by Runkod</a> <a target="_blank" style="color: inherit;" href="https://dzgwyeesnkdfj.cloudfront.net">Old Site</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal generator-modal">
+			<div class="modal-content generator-modal-content">
+				<div class="input-generator-length input-custom">
+					<div class="generator-length-text">Length</div>
+					<input class="generator-length-slider" type="range" step="1" unused="true">
+					<input class="input generator-length-value" type="text">
+				</div>
+				<div class="generator-features">
+					<div class="input-generator-feature input-custom">
+						<input feature="lowercase" class="input-generator-feature-box" type="checkbox" checked>
+						<div class="input-generator-feature-text">
+							Lowercase Letters <code class="characters">abcd...</code>
+						</div>
+					</div>
+					<div class="input-generator-feature input-custom">
+						<input feature="uppercase" class="input-generator-feature-box" type="checkbox" checked>
+						<div class="input-generator-feature-text">
+							Uppercase Letters <code class="characters">ABCD...</code>
+						</div>
+					</div>
+					<div class="input-generator-feature input-custom">
+						<input feature="numbers" class="input-generator-feature-box" type="checkbox" checked>
+						<div class="input-generator-feature-text">
+							Numbers <code class="characters">1234...</code>
+						</div>
+					</div>
+					<div class="input-generator-feature input-custom">
+						<input feature="symbols" class="input-generator-feature-box" type="checkbox" checked>
+						<div class="input-generator-feature-text">
+							Symbols <code class="characters">!@#$%^&amp;*</code>
+						</div>
+					</div>
+					<div class="input-generator-feature input-custom">
+						<input showelement="#words-type" feature="words" class="input-generator-feature-box" type="checkbox">
+						<div class="input-generator-feature-text">
+							Words <code class="characters">foo, bar...</code>
+						</div>
+					</div>
+					<div class="input-generator-feature input-generator-feature-separate input-custom" id="words-type">
+						<div class="input-generator-feature-item">
+							<input feature="words-type-title" name="words-type" class="input-generator-feature-box" type="radio">
+							<div class="input-generator-feature-text">
+								Title
+							</div>
+						</div>
+						<div class="input-generator-feature-item">
+							<input feature="words-type-lowercase" name="words-type" class="input-generator-feature-box" type="radio">
+							<div class="input-generator-feature-text">
+								Lowercase
+							</div>
+						</div>
+						<div class="input-generator-feature-item">
+							<input feature="words-type-uppercase" name="words-type" class="input-generator-feature-box" type="radio">
+							<div class="input-generator-feature-text">
+								Uppercase
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="generator-exclude">
+					<input class="input input-generator-exclude" type="text" placeholder="Exclude">
+				</div>
+				<div class="input generator-result">
+					<input type="text" readonly>
+				</div>
+				<div class="generator-done">
+					<input type="button" class="generator-done-button" value="Done">
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal auth-modal">
+			<div class="modal-content auth-modal-content">
+				<div class="header text">Authentication</div>
+				<div class="auth-entries sortable">
+				</div>
+				<div class="no-auth-entries text">Add an extra layer of security with a master password</div>
+				<div class="buttons-container">
+					<input type="button" class="add-auth-item-button" value="&#65291;">
+				</div>
+				<div class="auth-done">
+					<input type="button" class="auth-done-button" value="Done">
+					<input type="button" class="auth-cancel-button" value="Cancel">
+				</div>
+			</div>
+		</div>
+		
+		<div class="snackbar">
+			
+		</div>
+		<script src="/js/app.js"></script>
+	</body>
+</html>

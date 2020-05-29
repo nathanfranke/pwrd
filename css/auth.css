@@ -1,0 +1,49 @@
+.auth-modal-content {
+	display: flex;
+	
+	flex-direction: column;
+	
+	align-items: center;
+}
+
+.auth-entries {
+	margin: 16px;
+	
+	border: 2px solid black;
+	border-radius: 4px;
+}
+
+.auth-entries:empty {
+	display: none;
+}
+
+.auth-entries .entry .entry-name input {
+	min-width: 240px;
+}
+
+.auth-entries .entry .entry-value input {
+	min-width: 320px;
+}
+
+input[type="button"].add-auth-item-button {
+	width: 48px;
+	
+	margin-bottom: 16px;
+	
+	background-color: #104010;
+}
+
+.auth-entries:not(:empty) + .no-auth-entries {
+	display: none;
+}
+
+.no-auth-entries {
+	margin: 16px 0;
+	
+	text-align: center;
+	
+	font-size: 32px;
+	font-weight: bold;
+	
+	color: #C0C0C0;
+}

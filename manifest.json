@@ -1,0 +1,10 @@
+{
+	"name": "Pwrd",
+	"start_url": "https://pwrd.runkodapps.com/",
+	"description": "PWRD Password Manager",
+	"icons": [{
+		"src": "https://via.placeholder.com/256",
+		"sizes": "256x256",
+		"type": "image/png"
+	}]
+}
