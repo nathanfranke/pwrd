@@ -1,0 +1,2 @@
+# pwrd
+BlockStack Password Manager
