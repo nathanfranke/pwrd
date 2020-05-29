@@ -30,7 +30,7 @@ function addButton(forElement, n, type, src, callback) {
 	forElement.append(button);
 }
 
-function addEntry(name, key, value) {
+function addEntry(name, key, value, entryIndex = -1) {
 	let entry = $(document.createElement("div")).addClass("entry entry-item");
 	
 	let nameField = $(document.createElement("div"))
@@ -105,7 +105,13 @@ function addEntry(name, key, value) {
 	});
 	
 	let entries = $(".entries");
+	
 	entries.append(entry);
+	if(entryIndex == -1) {
+		entries.append(entry);
+	} else {
+		entries[0].insertBefore(entry[0], entries[0].childNodes[entryIndex+1]);
+	}
 	
 	return entry;
 }
@@ -129,7 +135,26 @@ function addSeparator(title) {
 				queueSave();
 			});
 	
-	addButton(separator, 0, "remove", "res/remove.png", event => {
+	addButton(separator, 0, "add", "res/add.png", event => {
+		let entryIndex = 0;
+		let searching = false;
+		$(".entries").find(".entry").each((i, itemElem) => {
+			let item = $(itemElem);
+			
+			if(item.is(separator)) {
+				console.log("yes");
+				searching = true;
+			} else if(item.hasClass("entry-separator")) {
+				searching = false;
+			} else if(searching) {
+				entryIndex = item.index();
+			}
+		});
+		addEntry("", "", "", entryIndex).find(".entry-item-name input").focus();
+		queueSave();
+	});
+	
+	addButton(separator, 1, "remove", "res/remove.png", event => {
 		separator.remove();
 		queueSave();
 	});
