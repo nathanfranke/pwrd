@@ -1,5 +1,5 @@
 
-const PWRD = new Auth("https://pwrd.xyz");
+const PWRD = new Auth("https://pwrd.ga");
 
 function setState(state) {
 	$(".signin-button").hide();
