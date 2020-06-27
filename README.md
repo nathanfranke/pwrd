@@ -1,4 +1,4 @@
-# [PWRD](https://pwrd.xyz)
+# [PWRD](https://pwrd.ga)
 BlockStack Password Manager
 
 Copyright © 2019-2020 Nathan Franke  
